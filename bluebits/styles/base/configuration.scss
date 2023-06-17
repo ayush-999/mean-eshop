@@ -12,3 +12,7 @@ a {
 ul {
     @include reset-list;
 }
+
+.f-size-12 {
+    font-size: 12px;
+}
