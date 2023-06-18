@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="admin-page">
-    <p-card [header]="editMode ? 'Edit Category': 'Add Category'" subheader="You can add or edit categories here">
+    <p-card [header]="editMode ? 'Edit Category' : 'Add Category'" subheader="You can add or edit categories here">
         <div class="grid mb-2">
             <div class="col-12">
                 <p-toolbar>
@@ -13,7 +13,7 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" (click)="onCancel()">
                             <i class="pi pi-arrow-circle-left me-1 f-size-12"></i><span>Cancel</span>
                         </button>
                     </div>
@@ -39,6 +39,10 @@
                             <small *ngIf="categoryForm.icon.invalid && isSubmitted" class="p-error">
                                 Icon is required
                             </small>
+                        </div>
+                        <div class="field col">
+                            <label for="color">Color</label> <br>
+                            <p-colorPicker formControlName="color"></p-colorPicker>
                         </div>
                     </div>
                 </form>

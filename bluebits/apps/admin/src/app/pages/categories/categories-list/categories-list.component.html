@@ -17,17 +17,21 @@
                 <p-table [value]="categories" styleClass="p-datatable-gridlines">
                     <ng-template pTemplate="header" let-columns>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
+                            <th pSortableColumn="name">Name<p-sortIcon field="code"></p-sortIcon></th>
                             <th>Icon</th>
+                            <th>Color</th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-category let-columns="columns">
                         <tr>
-                            <td>{{ category.id }}</td>
                             <td>{{ category.name }}</td>
-                            <td>{{ category.icon }}</td>
+                            <td><i style="font-size: 1.5rem;" class="pi" [ngClass]="'pi-'+ category.icon"></i></td>
+                            <td>
+                                <i class="pi pi-circle-on" style="font-size: 2rem"
+                                    [ngStyle]="{ color: category.color }">
+                                </i>
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-danger me-2"
                                     [disabled]="isLoading && deletingCategoryId === category.id"
@@ -58,4 +62,5 @@
     </p-card>
 </div>
 
-<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+</p-confirmDialog>
