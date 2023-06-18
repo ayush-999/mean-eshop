@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="admin-page">
-    <p-card header="Add Category" subheader="You can add or edit categories here">
+    <p-card [header]="editMode ? 'Edit Category': 'Add Category'" subheader="You can add or edit categories here">
         <div class="grid mb-2">
             <div class="col-12">
                 <p-toolbar>
@@ -8,7 +8,7 @@
                     <div class="p-toolbar-group-end">
                         <button type="button" class="btn btn-primary me-2" [disabled]="isLoading" (click)="onSubmit()">
                             <i *ngIf="!isLoading" class="pi pi-plus me-1 f-size-12"></i>
-                            <span *ngIf="!isLoading">Create</span>
+                            <span *ngIf="!isLoading">{{ editMode ? 'Update' : 'Create' }}</span>
                             <div *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>

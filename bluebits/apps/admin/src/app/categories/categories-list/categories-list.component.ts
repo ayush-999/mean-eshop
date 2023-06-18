@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
@@ -9,7 +10,12 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class CategoriesListComponent implements OnInit {
     categories: Category[] = [];
 
-    constructor(private categoriesService: CategoriesService, private messageService: MessageService, private confirmationService: ConfirmationService) {}
+    constructor(
+        private categoriesService: CategoriesService,
+        private messageService: MessageService,
+        private confirmationService: ConfirmationService,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
         this._getCategories();
@@ -17,6 +23,7 @@ export class CategoriesListComponent implements OnInit {
 
     isLoading = false;
     deletingCategoryId: string | null = null;
+    updateCategoryId: string | null = null;
     deleteCategory(categoryId: string) {
         this.isLoading = true;
         this.deletingCategoryId = categoryId;
@@ -30,17 +37,28 @@ export class CategoriesListComponent implements OnInit {
                 icon: 'pi pi-exclamation-triangle',
                 accept: () => {
                     this.categoriesService.deleteCategory(categoryId).subscribe(
-                        () => {
+                        (response) => {
                             this._getCategories();
                             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Category is deleted!' });
                         },
-                        () => {
+                        (error) => {
                             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category is not deleted!' });
                         }
                     );
                 }
             });
         }, 700);
+    }
+
+    updateCategory(categoryId: string) {
+        this.isLoading = true;
+        this.updateCategoryId = categoryId;
+        setTimeout(() => {
+            this.isLoading = false;
+            this.updateCategoryId = null;
+
+            this.router.navigateByUrl(`categories/form/${categoryId}`);
+        }, 500);
     }
 
     private _getCategories() {

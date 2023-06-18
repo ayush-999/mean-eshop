@@ -39,8 +39,15 @@
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </button>
-                                <button type="button" class="btn btn-success">
-                                    <i class="pi pi-pencil f-size-12"></i>
+                                <button type="button" class="btn btn-success"
+                                    [disabled]="isLoading && updateCategoryId === category.id"
+                                    (click)="updateCategory(category.id)">
+                                    <i *ngIf="!(isLoading && updateCategoryId === category.id)"
+                                        class="pi pi-pencil f-size-12"></i>
+                                    <div *ngIf="isLoading && updateCategoryId === category.id"
+                                        class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
                                 </button>
                             </td>
                         </tr>
