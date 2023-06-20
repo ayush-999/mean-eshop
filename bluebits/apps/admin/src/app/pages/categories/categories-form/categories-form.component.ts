@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -30,7 +31,7 @@ export class CategoriesFormComponent implements OnInit {
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
             icon: ['', Validators.required],
-            color: ['#FFF']
+            color: ['#000']
         });
 
         this._checkEditMode();
@@ -111,6 +112,7 @@ export class CategoriesFormComponent implements OnInit {
             }
         });
     }
+
     get categoryForm() {
         return this.form.controls;
     }

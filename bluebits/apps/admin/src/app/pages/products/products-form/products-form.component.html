@@ -1,0 +1,129 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editMode ? 'Edit Product' : 'Add Product'" subheader="You can add or edit products here">
+        <div class="grid mb-2">
+            <div class="col-12">
+                <p-toolbar>
+                    <div class="p-toolbar-group-start"></div>
+                    <div class="p-toolbar-group-end">
+                        <button type="button" class="btn btn-primary me-2" [disabled]="isLoading" (click)="onSubmit()">
+                            <i *ngIf="!isLoading" class="pi pi-plus me-1 f-size-12"></i>
+                            <span *ngIf="!isLoading">{{ editMode ? 'Update' : 'Create' }}</span>
+                            <div *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+                            <i class="pi pi-arrow-circle-left me-1 f-size-12"></i><span>Cancel</span>
+                        </button>
+                    </div>
+                </p-toolbar>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12">
+                <form [formGroup]="form">
+                    <div class="formgrid grid">
+                        <!-- 
+                        <div class="field col">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" formControlName="name"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                [class.border-red]="productForm.name.invalid && isSubmitted">
+                            <small *ngIf="productForm.name.invalid && isSubmitted" class="p-error">
+                                Name is required
+                            </small>
+                        </div>
+                        -->
+                        <div class="field col-7">
+                            <label for="name" [class.p-error]="productForm.name.invalid && isSubmitted">
+                                Name <span class="text-color-red">*</span>
+                            </label>
+                            <input type="text" pInputText id="name" formControlName="name" class="ng-dirty w-100"
+                                [class.ng-invalid]="productForm.name.invalid && isSubmitted" />
+                            <small *ngIf="productForm.name.invalid && isSubmitted" class="p-error">
+                                Name is required
+                            </small>
+                        </div>
+                        <div class="field col-4">
+                            <label for="brand" [class.p-error]="productForm.brand.invalid && isSubmitted">
+                                Brand <span class="text-color-red">*</span>
+                            </label>
+                            <input type="text" pInputText id="brand" formControlName="brand" class="ng-dirty w-100"
+                                [class.ng-invalid]="productForm.brand.invalid && isSubmitted" />
+                            <small *ngIf="productForm.brand.invalid && isSubmitted" class="p-error">
+                                Brand is required
+                            </small>
+                        </div>
+                        <div class="field col-1">
+                            <label for="isFeatured">
+                                Is Featured
+                            </label>
+                            <p-inputSwitch formControlName="isFeatured" inputId="isFeatured"
+                                class="d-block mt-1"></p-inputSwitch>
+                        </div>
+                    </div>
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="category" [class.p-error]="productForm.category.invalid && isSubmitted">
+                                Category <span class="text-color-red">*</span>
+                            </label>
+                            <p-dropdown formControlName="category" [options]="categories" inputId="category"
+                                optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                                placeholder="Select a Category" class="ng-dirty d-block w-100"
+                                [class.ng-invalid]="productForm.category.invalid && isSubmitted">
+                            </p-dropdown>
+                            <small *ngIf="productForm.category.invalid && isSubmitted" class="p-error">
+                                Category is required
+                            </small>
+                        </div>
+
+                        <div class="field col">
+                            <label for="price" [class.p-error]="productForm.price.invalid && isSubmitted">
+                                Price <span class="text-color-red">*</span>
+                            </label>
+                            <br>
+                            <p-inputNumber formControlName="price" mode="currency" inputId="price" currency="INR"
+                                currencyDisplay="code" locale="en-IN" class="ng-dirty d-block"
+                                [class.ng-invalid]="productForm.price.invalid && isSubmitted">
+                            </p-inputNumber>
+                            <small *ngIf="productForm.price.invalid && isSubmitted" class="p-error">
+                                Price is required
+                            </small>
+                        </div>
+
+                        <div class="field col">
+                            <label for="countInStock" [class.p-error]="productForm.countInStock.invalid && isSubmitted">
+                                Count In Stock <span class="text-color-red">*</span>
+                            </label>
+                            <br>
+                            <p-inputNumber formControlName="countInStock" inputId="countInStock" mode="decimal"
+                                class="ng-dirty d-block" [useGrouping]="false"
+                                [class.ng-invalid]="productForm.countInStock.invalid && isSubmitted">
+                            </p-inputNumber>
+                            <small *ngIf="productForm.countInStock.invalid && isSubmitted" class="p-error">
+                                Count In Stock is required
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class=" formgrid grid">
+                        <div class="field col-12">
+                            <label for="description" [class.p-error]="productForm.description.invalid && isSubmitted">
+                                Description <span class="text-color-red">*</span>
+                            </label>
+                            <textarea pInputTextarea rows="5" cols="30" id="description" formControlName="description"
+                                class="ng-dirty d-block w-100"
+                                [class.ng-invalid]="productForm.description.invalid && isSubmitted"></textarea>
+                            <small *ngIf="productForm.description.invalid && isSubmitted" class="p-error">
+                                Description is required
+                            </small>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </p-card>
+</div>

@@ -24,25 +24,42 @@
             <div class="col-12">
                 <form [formGroup]="form">
                     <div class="formgrid grid">
-                        <div class="field col">
+                        <!-- 
+                            <div class="field col">
                             <label for="name">Name</label>
                             <input id="name" type="text" formControlName="name"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                [class.border-red]="categoryForm.name.invalid && isSubmitted">
+                            <small *ngIf="categoryForm.name.invalid && isSubmitted" class="p-error">
+                                Name is required
+                            </small>
+                        </div>
+                        -->
+                        <div class="field col">
+                            <label for="name" [class.p-error]="categoryForm.name.invalid && isSubmitted">
+                                Name <span class="text-color-red">*</span>
+                            </label>
+                            <input type="text" pInputText id="name" formControlName="name" class="ng-dirty w-100"
+                                [class.ng-invalid]="categoryForm.name.invalid && isSubmitted" />
                             <small *ngIf="categoryForm.name.invalid && isSubmitted" class="p-error">
                                 Name is required
                             </small>
                         </div>
                         <div class="field col">
-                            <label for="icon">Icon</label>
-                            <input id="icon" type="text" formControlName="icon"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                            <label for="icon" [class.p-error]="categoryForm.icon.invalid && isSubmitted">
+                                Icon <span class="text-color-red">*</span>
+                            </label>
+                            <input type="text" pInputText id="icon" formControlName="icon" class="ng-dirty w-100"
+                                [class.ng-invalid]="categoryForm.icon.invalid && isSubmitted" />
                             <small *ngIf="categoryForm.icon.invalid && isSubmitted" class="p-error">
                                 Icon is required
                             </small>
                         </div>
                         <div class="field col">
                             <label for="color">Color</label> <br>
-                            <p-colorPicker formControlName="color"></p-colorPicker>
+                            <!-- <p-colorPicker formControlName="color"></p-colorPicker> -->
+                            <input type="color" formControlName="color" class="form-control form-control-color"
+                                id="color" value="#000" title="Choose your color">
                         </div>
                     </div>
                 </form>

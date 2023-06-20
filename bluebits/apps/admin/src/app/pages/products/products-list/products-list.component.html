@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="admin-page">
-    <p-card header="Categories" subheader="List of all categories">
+    <p-card header="Products" subheader="List of all products">
         <div class="grid">
             <div class="col-12">
                 <p-toolbar>
@@ -14,43 +14,45 @@
         </div>
         <div class="grid">
             <div class="col-12">
-                <p-table [value]="categories" styleClass="p-datatable-gridlines">
+                <p-table [value]="products" styleClass="p-datatable-gridlines">
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
-                            <th>Icon</th>
-                            <th>Color</th>
+                            <th>Image</th>
+                            <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
+                            <th pSortableColumn="stock">Stock<p-sortIcon field="stock"></p-sortIcon></th>
+                            <th pSortableColumn="category">Category<p-sortIcon field="category"></p-sortIcon></th>
+                            <th pSortableColumn="created">Created at<p-sortIcon field="created"></p-sortIcon></th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-category let-columns="columns">
+                    <ng-template pTemplate="body" let-product let-columns="columns">
                         <tr>
-                            <td>{{ category.name }}</td>
+                            <td>{{ product.name }}</td>
                             <td>
-                                <i style="font-size: 1.5rem;" class="pi" [ngClass]="'pi-'+ category.icon"></i>
+                                <img [src]="product.image" class="product-list-img" alt="">
                             </td>
-                            <td>
-                                <i class="pi pi-circle-on" style="font-size: 2rem"
-                                    [ngStyle]="{ color: category.color }">
-                                </i>
-                            </td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.countInStock }}</td>
+                            <td>{{ product.category.name }}</td>
+                            <td>{{ product.dateCreated | date:'shortDate'}}</td>
                             <td>
                                 <button type="button" class="btn btn-danger me-2"
-                                    [disabled]="isLoading && deletingCategoryId === category.id"
-                                    (click)="deleteCategory(category.id)">
-                                    <i *ngIf="!(isLoading && deletingCategoryId === category.id)"
+                                    [disabled]="isLoading && deletingProductId === product.id"
+                                    (click)="deleteProduct(product.id)">
+                                    <i *ngIf="!(isLoading && deletingProductId === product.id)"
                                         class="pi pi-trash f-size-12"></i>
-                                    <div *ngIf="isLoading && deletingCategoryId === category.id"
+                                    <div *ngIf="isLoading && deletingProductId === product.id"
                                         class="spinner-border spinner-border-sm" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </button>
                                 <button type="button" class="btn btn-success"
-                                    [disabled]="isLoading && updateCategoryId === category.id"
-                                    (click)="updateCategory(category.id)">
-                                    <i *ngIf="!(isLoading && updateCategoryId === category.id)"
+                                    [disabled]="isLoading && updateProductId === product.id"
+                                    (click)="updateProduct(product.id)">
+                                    <i *ngIf="!(isLoading && updateProductId === product.id)"
                                         class="pi pi-pencil f-size-12"></i>
-                                    <div *ngIf="isLoading && updateCategoryId === category.id"
+                                    <div *ngIf="isLoading && updateProductId === product.id"
                                         class="spinner-border spinner-border-sm" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>

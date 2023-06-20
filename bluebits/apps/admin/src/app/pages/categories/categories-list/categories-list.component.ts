@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/products';
@@ -22,8 +23,8 @@ export class CategoriesListComponent implements OnInit {
     }
 
     isLoading = false;
+   
     deletingCategoryId: string | null = null;
-    updateCategoryId: string | null = null;
     deleteCategory(categoryId: string) {
         this.isLoading = true;
         this.deletingCategoryId = categoryId;
@@ -32,7 +33,7 @@ export class CategoriesListComponent implements OnInit {
             this.deletingCategoryId = null;
 
             this.confirmationService.confirm({
-                message: 'Do you want to Delete this category?',
+                message: 'Do you want to delete this category?',
                 header: 'Delete Category',
                 icon: 'pi pi-exclamation-triangle',
                 accept: () => {
@@ -50,13 +51,13 @@ export class CategoriesListComponent implements OnInit {
         }, 700);
     }
 
+    updateCategoryId: string | null = null;
     updateCategory(categoryId: string) {
         this.isLoading = true;
         this.updateCategoryId = categoryId;
         setTimeout(() => {
             this.isLoading = false;
             this.updateCategoryId = null;
-
             this.router.navigateByUrl(`categories/form/${categoryId}`);
         }, 500);
     }
