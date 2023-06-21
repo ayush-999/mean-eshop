@@ -64,12 +64,12 @@
                         </div>
                     </div>
                     <div class="formgrid grid">
-                        <div class="field col">
+                        <div class="field col-4">
                             <label for="category" [class.p-error]="productForm.category.invalid && isSubmitted">
                                 Category <span class="text-color-red">*</span>
                             </label>
                             <p-dropdown formControlName="category" [options]="categories" inputId="category"
-                                optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                                optionLabel="name" optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
                                 placeholder="Select a Category" class="ng-dirty d-block w-100"
                                 [class.ng-invalid]="productForm.category.invalid && isSubmitted">
                             </p-dropdown>
@@ -77,8 +77,7 @@
                                 Category is required
                             </small>
                         </div>
-
-                        <div class="field col">
+                        <div class="field col-4">
                             <label for="price" [class.p-error]="productForm.price.invalid && isSubmitted">
                                 Price <span class="text-color-red">*</span>
                             </label>
@@ -91,8 +90,7 @@
                                 Price is required
                             </small>
                         </div>
-
-                        <div class="field col">
+                        <div class="field col-4">
                             <label for="countInStock" [class.p-error]="productForm.countInStock.invalid && isSubmitted">
                                 Count In Stock <span class="text-color-red">*</span>
                             </label>
@@ -105,7 +103,32 @@
                                 Count In Stock is required
                             </small>
                         </div>
-
+                    </div>
+                    <div class=" formgrid grid">
+                        <div class="field col-10">
+                            <label for="image" [class.p-error]="productForm.image.invalid && isSubmitted">
+                                Main Image <span class="text-color-red">*</span>
+                            </label>
+                            <input type="file" pInputText id="image" accept="image/*"
+                                class="form-control custom-file-input ng-dirty w-100" (change)="onImageUpload($event)"
+                                [class.ng-invalid]="productForm.image.invalid && isSubmitted" />
+                            <small *ngIf="productForm.image.invalid && isSubmitted" class="p-error">
+                                Main image is required
+                            </small>
+                        </div>
+                        <div class="field col-2">
+                            <div class="product-image-upload-wrapper ng-dirty">
+                                <ng-container *ngIf="!imageDisplay">
+                                    <!-- Default image -->
+                                    <img src="/assets/images/default-image.png"
+                                        class="img-fluid product-image-upload-preview" alt="">
+                                </ng-container>
+                                <ng-container *ngIf="imageDisplay">
+                                    <!-- Selected image -->
+                                    <img [src]="imageDisplay" class="img-fluid product-image-upload-preview" alt="">
+                                </ng-container>
+                            </div>
+                        </div>
                     </div>
 
                     <div class=" formgrid grid">
@@ -120,7 +143,14 @@
                                 Description is required
                             </small>
                         </div>
-
+                        <div class="field col-12">
+                            <label for="richDescription">
+                                Product Details
+                            </label>
+                            <p-editor formControlName="richDescription" id="richDescription"
+                                [style]="{ height: '200px' }">
+                            </p-editor>
+                        </div>
                     </div>
                 </form>
             </div>

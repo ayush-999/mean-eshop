@@ -22,6 +22,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { PaginatorModule } from 'primeng/paginator';
 // in future we need remove this line
 import { ColorPickerModule } from 'primeng/colorpicker';
 // components
@@ -45,7 +47,9 @@ const UX_MODULE = [
     InputNumberModule,
     InputTextareaModule,
     InputSwitchModule,
-    DropdownModule
+    DropdownModule,
+    EditorModule,
+    PaginatorModule
 ];
 
 @NgModule({

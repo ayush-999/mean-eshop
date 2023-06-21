@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,32 +9,32 @@ import { Product } from '../models/products';
     providedIn: 'root'
 })
 export class ProductService {
-    apiURLCategories = environment.apiUrl + 'products';
+    apiURLProducts = environment.apiUrl + 'products';
 
     constructor(private http: HttpClient) {}
 
     getProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>(this.apiURLCategories);
+        return this.http.get<Product[]>(this.apiURLProducts);
         // return this.http.get<Product[]>('http://localhost:3000/api/v1/categories/');
     }
 
-    // getCategory(categoryId: string): Observable<Product> {
-    //     return this.http.get<Product>(`${this.apiURLCategories}/${categoryId}`);
-    //     // return this.http.get<Product>(`http://localhost:3000/api/v1/categories/${categoryId}`);
-    // }
+    getProduct(productId: string): Observable<Product> {
+        return this.http.get<Product>(`${this.apiURLProducts}/${productId}`);
+        // return this.http.get<Product>(`http://localhost:3000/api/v1/categories/${productId}`);
+    }
 
-    // createCategory(category: Category): Observable<Product> {
-    //     return this.http.post<Product>(this.apiURLCategories, category);
-    //     // return this.http.post<Product>('http://localhost:3000/api/v1/categories/', category);
-    // }
+    createProduct(productData: FormData): Observable<Product> {
+        return this.http.post<Product>(this.apiURLProducts, productData);
+        // return this.http.post<Product>('http://localhost:3000/api/v1/categories/', category);
+    }
 
-    // updateCategory(category: Category): Observable<Product> {
-    //     return this.http.put<Product>(`${this.apiURLCategories}/${category.id}`, category);
-    //     // return this.http.put<Product>('http://localhost:3000/api/v1/categories/', category);
-    // }
+    updateProduct(productData: FormData, productId: string): Observable<Product> {
+        return this.http.put<Product>(`${this.apiURLProducts}/${productId}`, productData);
+        // return this.http.put<Product>(`http://localhost:3000/api/v1/categories/${productId}`, productData);
+    }
 
-    // deleteCategory(categoryId: string): Observable<object> {
-    //     return this.http.delete<object>(`${this.apiURLCategories}/${categoryId}`);
-    //     // return this.http.delete<object>(`http://localhost:3000/api/v1/categories/${categoryId}`);
-    // }
+    deleteProduct(productId: string): Observable<object> {
+        return this.http.delete<object>(`${this.apiURLProducts}/${productId}`);
+        // return this.http.delete<object>(`http://localhost:3000/api/v1/categories/${productId}`);
+    }
 }
