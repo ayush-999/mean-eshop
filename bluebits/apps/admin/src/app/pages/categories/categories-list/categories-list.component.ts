@@ -23,7 +23,7 @@ export class CategoriesListComponent implements OnInit {
     }
 
     isLoading = false;
-   
+
     deletingCategoryId: string | null = null;
     deleteCategory(categoryId: string) {
         this.isLoading = true;
@@ -59,7 +59,7 @@ export class CategoriesListComponent implements OnInit {
             this.isLoading = false;
             this.updateCategoryId = null;
             this.router.navigateByUrl(`categories/form/${categoryId}`);
-        }, 500);
+        }, 700);
     }
 
     private _getCategories() {

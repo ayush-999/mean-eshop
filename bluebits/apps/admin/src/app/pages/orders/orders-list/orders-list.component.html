@@ -1,0 +1,61 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card header="Orders" subheader="List of all Orders">
+        <div class="grid">
+            <div class="col-12">
+                <p-table [value]="orders" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th pSortableColumn="user">User<p-sortIcon field="user"></p-sortIcon></th>
+                            <th pSortableColumn="totalPrice">
+                                Total Price <p-sortIcon field="totalPrice"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="dateOrdered">
+                                Date Ordered <p-sortIcon field="dateOrdered"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-order let-columns="columns">
+                        <tr>
+                            <td>{{ order.user.name }}</td>
+                            <td>{{ order.totalPrice }}</td>
+                            <td>{{ order.dateOrdered | date: 'short' }}</td>
+                            <td>
+                                <h6 class="mb-0">
+                                    <span class="badge text-bg-{{ orderStatus[order.status].color }}">
+                                        {{ orderStatus[order.status].label }}
+                                    </span>
+                                </h6>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger me-2"
+                                    [disabled]="isLoading && deletingOrderId === order.id"
+                                    (click)="deleteOrder(order.id)">
+                                    <i *ngIf="!(isLoading && deletingOrderId === order.id)"
+                                        class="pi pi-trash f-size-12"></i>
+                                    <div *ngIf="isLoading && deletingOrderId === order.id"
+                                        class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button>
+                                <button type="button" class="btn btn-success me-2"
+                                    [disabled]="isLoading && showOrderId === order.id" (click)="showOrder(order.id)">
+                                    <i *ngIf="!(isLoading && showOrderId === order.id)" class="pi pi-eye f-size-12"></i>
+                                    <div *ngIf="isLoading && showOrderId === order.id"
+                                        class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-card>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+</p-confirmDialog>

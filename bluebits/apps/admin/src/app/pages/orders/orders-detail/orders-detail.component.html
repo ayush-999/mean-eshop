@@ -1,0 +1,75 @@
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="order">
+    <p-card [header]="'View Order'" subheader="You can edit order status here">
+        <p-fieldset legend="Order Details" styleClass="mb-4" [toggleable]="true">
+            <div class="grid">
+                <div class="col-4">
+                    <h6 class="fw-semibold">Order Id</h6>
+                    <p>{{ order.id }}</p>
+                </div>
+
+                <div class="col-4">
+                    <h6 class="fw-semibold">Order Date</h6>
+                    <p>{{ order.dateOrdered | date: 'short' }}</p>
+                </div>
+
+                <div class="col-4">
+                    <h6 class="fw-semibold">Order Status</h6>
+                    <p-dropdown [options]="orderStatuses" optionLabel="name" optionValue="id"
+                        (onChange)="onStatusChange($event)" [(ngModel)]="selectedStatus">
+                    </p-dropdown>
+                </div>
+
+                <div class="col-4">
+                    <h6 class="fw-semibold">Order Total Price</h6>
+                    <p>{{ order.totalPrice | currency:'INR' }}</p>
+                </div>
+            </div>
+        </p-fieldset>
+        <p-fieldset legend="Order Items" styleClass="mb-4" [toggleable]="true">
+            <div class="grid mb-3">
+                <div class="col-2 fw-semibold">Name</div>
+                <div class="col-2 fw-semibold">Brand</div>
+                <div class="col-2 fw-semibold">Category</div>
+                <div class="col-2 fw-semibold">Price</div>
+                <div class="col-2 fw-semibold">Quantity</div>
+                <div class="col-2 fw-semibold">Subtotal</div>
+            </div>
+            <div class="grid mb-4" *ngFor="let orderItem of order.orderItems">
+                <div class="col-2">{{ orderItem.product.name }}</div>
+                <div class="col-2">{{ orderItem.product.brand }}</div>
+                <div class="col-2">{{ orderItem.product.category.name }}</div>
+                <div class="col-2">{{ orderItem.product.price | currency:'INR' }}</div>
+                <div class="col-2">{{ orderItem.quantity }}</div>
+                <div class="col-2">{{ orderItem.product.price * orderItem.quantity | currency:'INR' }}</div>
+            </div>
+            <div class="grid" style="color: green">
+                <div class="col-2 offset-8 fw-semibold">Total Price</div>
+                <div class="col-2 fw-semibold">{{ order.totalPrice | currency:'INR' }}</div>
+            </div>
+        </p-fieldset>
+        <p-fieldset legend="Order Address" styleClass="mb-4" [toggleable]="true">
+            <div class="grid">
+                <div class="col-6">
+                    <h6 class="fw-semibold">Order Address</h6>
+                    <p>
+                        {{ order.shippingAddress1 }},
+                        {{ order.shippingAddress2 }},
+                        {{ order.zip }} {{ order.city }},
+                        {{ order.country }}
+                    </p>
+                </div>
+
+                <div class="col-3">
+                    <h6 class="fw-semibold">Customer Info</h6>
+                    <p>{{ order.user.name }}</p>
+                </div>
+
+                <div class="col-3">
+                    <h6 class="fw-semibold">Contact Info</h6>
+                    <p>{{ order.phone }}</p>
+                </div>
+            </div>
+        </p-fieldset>
+    </p-card>
+</div>

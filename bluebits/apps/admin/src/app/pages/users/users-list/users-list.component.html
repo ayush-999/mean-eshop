@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="admin-page">
-    <p-card header="Categories" subheader="List of all categories">
+    <p-card header="Users" subheader="List of all users">
         <div class="grid">
             <div class="col-12">
                 <p-toolbar>
@@ -14,43 +14,45 @@
         </div>
         <div class="grid">
             <div class="col-12">
-                <p-table [value]="categories" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="10">
+                <p-table [value]="users" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="10">
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
-                            <th>Icon</th>
-                            <th>Color</th>
+                            <th>Email</th>
+                            <th>Is Admin</th>
+                            <th>Country</th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-category let-columns="columns">
+                    <ng-template pTemplate="body" let-user let-columns="columns">
                         <tr>
-                            <td>{{ category.name }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
                             <td>
-                                <i style="font-size: 1.5rem;" class="pi" [ngClass]="'pi-'+ category.icon"></i>
+                                <span *ngIf="user.isAdmin" class="badge text-bg-success rounded-pill">
+                                    <i class="pi pi-check"></i>
+                                </span>
+
+                                <span *ngIf="!user.isAdmin" class="badge text-bg-danger rounded-pill">
+                                    <i class="pi pi-times"></i>
+                                </span>
                             </td>
-                            <td>
-                                <i class="pi pi-circle-on" style="font-size: 2rem"
-                                    [ngStyle]="{ color: category.color }">
-                                </i>
-                            </td>
+                            <td>{{ user.country }}</td>
                             <td>
                                 <button type="button" class="btn btn-danger me-2"
-                                    [disabled]="isLoading && deletingCategoryId === category.id"
-                                    (click)="deleteCategory(category.id)">
-                                    <i *ngIf="!(isLoading && deletingCategoryId === category.id)"
+                                    [disabled]="isLoading && deletingUserId === user.id" (click)="deleteUser(user.id)">
+                                    <i *ngIf="!(isLoading && deletingUserId === user.id)"
                                         class="pi pi-trash f-size-12"></i>
-                                    <div *ngIf="isLoading && deletingCategoryId === category.id"
+                                    <div *ngIf="isLoading && deletingUserId === user.id"
                                         class="spinner-border spinner-border-sm" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </button>
                                 <button type="button" class="btn btn-success"
-                                    [disabled]="isLoading && updateCategoryId === category.id"
-                                    (click)="updateCategory(category.id)">
-                                    <i *ngIf="!(isLoading && updateCategoryId === category.id)"
+                                    [disabled]="isLoading && updateUserId === user.id" (click)="updateUser(user.id)">
+                                    <i *ngIf="!(isLoading && updateUserId === user.id)"
                                         class="pi pi-pencil f-size-12"></i>
-                                    <div *ngIf="isLoading && updateCategoryId === category.id"
+                                    <div *ngIf="isLoading && updateUserId === user.id"
                                         class="spinner-border spinner-border-sm" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>

@@ -43,8 +43,8 @@ export class CategoriesFormComponent implements OnInit {
         if (this.form.invalid) {
             return;
         }
-
         this.isLoading = true;
+
         setTimeout(() => {
             this.isLoading = false;
 
@@ -71,7 +71,7 @@ export class CategoriesFormComponent implements OnInit {
         this.categoriesService.createCategory(category).subscribe(
             (category: Category) => {
                 this.messageService.add({ severity: 'success', summary: 'Success', detail: `Category ${category.name} is created!` });
-                timer(1000)
+                timer(500)
                     .toPromise()
                     .then(() => {
                         this.location.back();
@@ -87,7 +87,7 @@ export class CategoriesFormComponent implements OnInit {
         this.categoriesService.updateCategory(category).subscribe(
             () => {
                 this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Category is updated!' });
-                timer(1000)
+                timer(500)
                     .toPromise()
                     .then(() => {
                         this.location.back();

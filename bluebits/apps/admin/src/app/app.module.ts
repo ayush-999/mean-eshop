@@ -24,6 +24,10 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { PaginatorModule } from 'primeng/paginator';
+import { InputMaskModule } from 'primeng/inputmask';
+import { TagModule } from 'primeng/tag';
+import { FieldsetModule } from 'primeng/fieldset';
+
 // in future we need remove this line
 import { ColorPickerModule } from 'primeng/colorpicker';
 // components
@@ -34,6 +38,10 @@ import { CategoriesListComponent } from './pages/categories/categories-list/cate
 import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 
 const UX_MODULE = [
     CardModule,
@@ -49,7 +57,10 @@ const UX_MODULE = [
     InputSwitchModule,
     DropdownModule,
     EditorModule,
-    PaginatorModule
+    PaginatorModule,
+    InputMaskModule,
+    TagModule,
+    FieldsetModule
 ];
 
 @NgModule({
@@ -61,7 +72,11 @@ const UX_MODULE = [
         CategoriesListComponent,
         CategoriesFormComponent,
         ProductsListComponent,
-        ProductsFormComponent
+        ProductsFormComponent,
+        UsersFormComponent,
+        UsersListComponent,
+        OrdersDetailComponent,
+        OrdersListComponent
     ],
     imports: [
         BrowserModule,

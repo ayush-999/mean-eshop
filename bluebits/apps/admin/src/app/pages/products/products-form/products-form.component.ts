@@ -35,35 +35,6 @@ export class ProductsFormComponent implements OnInit {
         this._checkEditMode();
     }
 
-    isLoading = false;
-
-    onSubmit() {
-        this.isSubmitted = true;
-        if (this.form.invalid) {
-            return;
-        }
-
-        this.isLoading = true;
-        setTimeout(() => {
-            this.isLoading = false;
-
-            const productFormData = new FormData();
-            Object.keys(this.productForm).map((key) => {
-                productFormData.append(key, this.productForm[key].value);
-            });
-
-            if (this.editMode) {
-                this._updateProduct(productFormData);
-            } else {
-                this._addProduct(productFormData);
-            }
-        }, 700);
-    }
-
-    onCancel() {
-        this.location.back();
-    }
-
     private _initForm() {
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
@@ -78,6 +49,34 @@ export class ProductsFormComponent implements OnInit {
         });
     }
 
+    isLoading = false;
+    onSubmit() {
+        this.isSubmitted = true;
+        if (this.form.invalid) {
+            return;
+        }
+
+        this.isLoading = true;
+        setTimeout(() => {
+            this.isLoading = false;
+
+            const productFormData = new FormData();
+            Object.keys(this.productForm).map((key) => {
+                productFormData.append(key, this.productForm[key].value);
+            });
+                       
+            if (this.editMode) {
+                this._updateProduct(productFormData);
+            } else {
+                this._addProduct(productFormData);
+            }
+        }, 700);
+    }
+
+    onCancel() {
+        this.location.back();
+    }
+
     private _getCategories() {
         this.categoriesService.getCategories().subscribe((categories) => {
             this.categories = categories;
@@ -88,7 +87,7 @@ export class ProductsFormComponent implements OnInit {
         this.productsService.createProduct(productData).subscribe(
             (product: Product) => {
                 this.messageService.add({ severity: 'success', summary: 'Success', detail: `Product ${product.name} is created!` });
-                timer(1000)
+                timer(500)
                     .toPromise()
                     .then(() => {
                         this.location.back();
@@ -108,7 +107,7 @@ export class ProductsFormComponent implements OnInit {
                     summary: 'Success',
                     detail: 'Product is updated!'
                 });
-                timer(2000)
+                timer(500)
                     .toPromise()
                     .then(() => {
                         this.location.back();
