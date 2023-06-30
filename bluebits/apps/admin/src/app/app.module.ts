@@ -2,9 +2,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+//
+import { JwtInterceptor, UsersModule } from '@bluebits/users';
+//
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { RouterLinkActive } from '@angular/router';
@@ -27,6 +30,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TagModule } from 'primeng/tag';
 import { FieldsetModule } from 'primeng/fieldset';
+import { PasswordModule } from 'primeng/password';
 
 // in future we need remove this line
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -60,7 +64,8 @@ const UX_MODULE = [
     PaginatorModule,
     InputMaskModule,
     TagModule,
-    FieldsetModule
+    FieldsetModule,
+    PasswordModule
 ];
 
 @NgModule({
@@ -84,11 +89,12 @@ const UX_MODULE = [
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
+        UsersModule,
         RouterLinkActive,
         RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
         ...UX_MODULE
     ],
-    providers: [CategoriesService, MessageService, ConfirmationService],
+    providers: [CategoriesService, MessageService, ConfirmationService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

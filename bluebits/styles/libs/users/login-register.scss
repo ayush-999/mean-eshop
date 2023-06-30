@@ -1,0 +1,32 @@
+.login-register {
+    background: hsla(279, 95%, 49%, 1);
+    background: linear-gradient(90deg, hsla(279, 95%, 49%, 1) 0%, hsla(295, 96%, 50%, 1) 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-panel {
+        border-radius: 10px;
+    }
+
+    &-login-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border-radius: 10px 0 0 10px;
+    }
+
+    &-header-wrapper {
+        .login-register-sub-header {
+            font-size: 18px;
+        }
+
+        .login-register-header {
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+}

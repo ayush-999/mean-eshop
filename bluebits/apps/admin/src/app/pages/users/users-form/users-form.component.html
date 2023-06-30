@@ -45,16 +45,22 @@
                                 <span *ngIf="userForm.email.errors.email">Email is invalid</span>
                             </small>
                         </div>
+
                         <div class="field col-4">
                             <label for="password" [class.p-error]="userForm.password.invalid && isSubmitted">
                                 Password <span class="text-color-red">*</span>
                             </label>
-                            <input type="password" pInputText id="password" formControlName="password"
-                                class="ng-dirty w-100" [class.ng-invalid]="userForm.password.invalid && isSubmitted" />
+                            <!-- <input type="password" pInputText id="password" formControlName="password"
+                                class="ng-dirty w-100" [class.ng-invalid]="userForm.password.invalid && isSubmitted" /> -->
+                            <p-password class="d-block" id="password" formControlName="password" class="ng-dirty"
+                                [toggleMask]="true"
+                                [class.ng-invalid]="userForm.password.invalid && isSubmitted"></p-password>
                             <small *ngIf="userForm.password.invalid && isSubmitted" class="p-error">
                                 Password is required
                             </small>
                         </div>
+
+
                         <div class="field col-1">
                             <label for="isAdmin">Is Admin</label><br />
                             <p-inputSwitch formControlName="isAdmin" inputId="isAdmin"></p-inputSwitch>

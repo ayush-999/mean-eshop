@@ -1,0 +1,68 @@
+<div class="login-register">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 mx-auto">
+                <div class="card login-register-panel border-0">
+                    <div class="row">
+                        <div class="col-md-5 pr-0">
+                            <div class="login-register-photo-wrapper">
+                                <img src="assets/images/login-photo.png" class="img-fluid login-register-login-img"
+                                    alt="Login Photo">
+                            </div>
+                        </div>
+                        <div class="col-md-7 pl-0">
+                            <div class="login-register-form-wrapper p-3 h-100">
+                                <div class="border border-1 border-secondary-subtle p-3 h-100 rounded-end-3">
+                                    <div class="login-register-header-wrapper mt-3">
+                                        <h5 class="login-register-sub-header">Welcome!</h5>
+                                        <h3 class="login-register-header">
+                                            Login Here
+                                        </h3>
+                                    </div>
+                                    <form [formGroup]="loginFormGroup">
+                                        <div class="grid mt-4">
+                                            <div class="col-12 pt-0 pb-0 mb-3">
+                                                <input type="text" formControlName="email" pInputText id="email"
+                                                    class="ng-dirty" placeholder="Please enter your email address"
+                                                    [class.ng-invalid]="loginForm.email.invalid && isSubmitted" />
+                                                <small *ngIf="loginForm.email.invalid && isSubmitted" class="p-error">
+                                                    <span *ngIf="loginForm.email.errors.required">
+                                                        Email is required
+                                                    </span>
+                                                    <span *ngIf="loginForm.email.errors.email">
+                                                        Email is invalid</span>
+                                                </small>
+                                            </div>
+                                            <div class="col-12 pt-0 pb-0 mb-3">
+                                                <p-password class="d-block" formControlName="password"
+                                                    [toggleMask]="true" placeholder="Please enter password"
+                                                    class="ng-dirty" [class.ng-invalid]="loginForm.password.invalid
+                                                    && isSubmitted">    
+                                                </p-password>
+                                                <small *ngIf="loginForm.password.invalid && isSubmitted"
+                                                    class="p-error">Password is required
+                                                </small>
+                                            </div>
+                                            <div class="col-12 pt-0 pb-0">
+                                                <p-button label="Submit" class="d-block" [disabled]="isLoading"
+                                                    (onClick)="onSubmit()">
+                                                    <div *ngIf="isLoading" class="spinner-border spinner-border-sm"
+                                                        role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </p-button>
+                                            </div>
+                                            <div class="p-col-12" *ngIf="isSubmitted && authError">
+                                                <small class="p-error">{{ authMessage }}</small>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

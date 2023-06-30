@@ -13,6 +13,30 @@ ul {
     @include reset-list;
 }
 
+// Custom for admin
 .f-size-12 {
     font-size: 12px;
 }
+
+.border-red {
+    border-color: #f44336 !important;
+}
+
+.text-color-red {
+    color: #f44336 !important;
+}
+
+.p-inputnumber,
+.p-dropdown,
+.p-inputtext,
+.p-password,
+.p-button {
+    width: 100%;
+}
+
+.custom-file-input {
+    padding: 8px;
+    border-radius: 3px;
+}
+
+// Custom for user
