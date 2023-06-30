@@ -10,6 +10,7 @@ import { JwtInterceptor, UsersModule } from '@bluebits/users';
 //
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+// import { AppRoutingModule } from './app-routing.module';
 import { RouterLinkActive } from '@angular/router';
 import { CategoriesService } from '@bluebits/products';
 // Prime Ng
@@ -85,6 +86,7 @@ const UX_MODULE = [
     ],
     imports: [
         BrowserModule,
+        // AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
         ReactiveFormsModule,

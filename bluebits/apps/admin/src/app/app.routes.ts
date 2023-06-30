@@ -66,5 +66,10 @@ export const appRoutes: Route[] = [
                 component: OrdersDetailComponent
             }
         ]
+    },
+    {
+        path: '**',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
     }
 ];
