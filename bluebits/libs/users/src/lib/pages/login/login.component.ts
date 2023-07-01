@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {
         this._initLoginForm();
+        this.checkAdminLoggedIn(); // Check if admin is already logged in
     }
 
     private _initLoginForm() {
@@ -53,5 +54,15 @@ export class LoginComponent implements OnInit {
 
     get loginForm() {
         return this.loginFormGroup.controls;
+    }
+
+    checkAdminLoggedIn() {
+        const token = this.localstorageService.getToken();
+        if (token) {
+            const tokenDecode = JSON.parse(atob(token.split('.')[1]));
+            if (tokenDecode.isAdmin) {
+                this.router.navigate(['/dashboard']);
+            }
+        }
     }
 }
