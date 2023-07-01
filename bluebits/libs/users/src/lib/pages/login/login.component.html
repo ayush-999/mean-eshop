@@ -24,7 +24,7 @@
                                             <div class="col-12 pt-0 pb-0 mb-3">
                                                 <input type="text" formControlName="email" pInputText id="email"
                                                     class="ng-dirty" placeholder="Please enter your email address"
-                                                    [class.ng-invalid]="loginForm.email.invalid && isSubmitted" />
+                                                    [class.ng-invalid]="loginForm.email.invalid && authError && isSubmitted" />
                                                 <small *ngIf="loginForm.email.invalid && isSubmitted" class="p-error">
                                                     <span *ngIf="loginForm.email.errors.required">
                                                         Email is required
@@ -36,8 +36,8 @@
                                             <div class="col-12 pt-0 pb-0 mb-3">
                                                 <p-password class="d-block" formControlName="password"
                                                     [toggleMask]="true" placeholder="Please enter password"
-                                                    class="ng-dirty" [class.ng-invalid]="loginForm.password.invalid
-                                                    && isSubmitted">    
+                                                    class="ng-dirty"
+                                                    [class.ng-invalid]="loginForm.password.invalid && authError && isSubmitted">
                                                 </p-password>
                                                 <small *ngIf="loginForm.password.invalid && isSubmitted"
                                                     class="p-error">Password is required
@@ -52,8 +52,11 @@
                                                     </div>
                                                 </p-button>
                                             </div>
-                                            <div class="p-col-12" *ngIf="isSubmitted && authError">
-                                                <small class="p-error">{{ authMessage }}</small>
+                                            <div class="p-col-12 d-block w-100 text-center mt-2 pl-2 pr-2"
+                                                *ngIf="isSubmitted && authError">
+                                                <div class="alert alert-danger p-2 rounded-1" role="alert">
+                                                    {{ authMessage }}
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
