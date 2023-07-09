@@ -32,6 +32,8 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TagModule } from 'primeng/tag';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PasswordModule } from 'primeng/password';
+import { ChartModule } from 'primeng/chart';
+import { DividerModule } from 'primeng/divider';
 
 // in future we need remove this line
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -66,7 +68,9 @@ const UX_MODULE = [
     InputMaskModule,
     TagModule,
     FieldsetModule,
-    PasswordModule
+    PasswordModule,
+    ChartModule,
+    DividerModule
 ];
 
 @NgModule({

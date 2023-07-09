@@ -17,7 +17,7 @@
                 "tsConfig": "apps/admin/tsconfig.app.json",
                 "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
                 "styles": ["apps/admin/src/styles.scss", "node_modules/quill/dist/quill.core.css", "node_modules/quill/dist/quill.snow.css"],
-                "scripts": ["node_modules/quill/dist/quill.min.js"]
+                "scripts": ["node_modules/quill/dist/quill.min.js", "node_modules/chart.js/dist/chart.js"]
             },
             "configurations": {
                 "production": {

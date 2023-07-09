@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '@bluebits/orders';
 import { ProductService } from '@bluebits/products';

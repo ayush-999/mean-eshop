@@ -109,12 +109,13 @@
                             <div class="admin-product-image-upload-wrapper ng-dirty">
                                 <ng-container *ngIf="!imageDisplay">
                                     <!-- Default image -->
-                                    <img src="/assets/images/default-image.png"
+                                    <img src="https://res.cloudinary.com/ayush999/image/upload/v1687367772/default-pictures/cover-pictures/default_vgpswl.jpg"
                                         class="img-fluid admin-product-image-upload-preview" alt="">
                                 </ng-container>
                                 <ng-container *ngIf="imageDisplay">
                                     <!-- Selected image -->
-                                    <img [src]="imageDisplay" class="img-fluid admin-product-image-upload-preview" alt="">
+                                    <img [src]="imageDisplay" class="img-fluid admin-product-image-upload-preview"
+                                        alt="">
                                 </ng-container>
                             </div>
                         </div>
